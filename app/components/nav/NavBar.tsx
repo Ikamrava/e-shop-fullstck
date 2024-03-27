@@ -18,7 +18,7 @@ export default function NavBar({}: Props) {
                 <Link href="/" className={`${font.className} font-bold text-4xl `}>E-Shop</Link>
                 <div className=' hidden md:block'>Search</div>
                 <div className=' flex items-center gap-8 md:gap-12'>
-                    <div>Cart</div>
+                    <Link href={"/cart"}>Cart</Link>
                     <div>UserMenu</div>
                 </div>
                </div>
