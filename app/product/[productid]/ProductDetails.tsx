@@ -1,10 +1,29 @@
 "use client"
 
+import SetColor from "@/app/components/prosucts/SetColor"
 import { Rating } from "@mui/material"
 import { hrtime } from "process"
+import { useCallback, useState } from "react"
 
 type Props = {
    product:any 
+}
+export type CartProductType = {
+    id:string,
+    name:string,
+    description:string
+    brand:string,
+    category:string,
+    selectedImg:SelectedImgType
+    price:number,
+    quantity:number,
+
+}
+
+export type SelectedImgType ={
+    color:string,
+    colorCode:string,
+    image:string
 }
 
 const Horizontal =() =>{
@@ -16,6 +35,24 @@ const Horizontal =() =>{
 function ProductDetails({product}: Props) {
     const prodcutRating = product.reviews.reduce((acc:number,item:any) =>
      item.rating + acc ,0) / product.reviews.length
+
+     const [cartProduct,setCartProduct] = useState<CartProductType> ({
+        id:product.id,
+        name:product.name,
+        description:product.description,
+        brand:product.brand,
+        category:product.category,
+        selectedImg:{...product.images},
+        price:product.price,
+        quantity:1,
+     })
+
+    const handleColorSet = useCallback((value:SelectedImgType)=>{
+        setCartProduct(prev =>({...prev,selectedImg:value}))
+    },[cartProduct.selectedImg])
+    
+
+
   return (
     <div className=" grid grid-cols-1 md:grid-cols-2 gap-12">
         <div>
@@ -38,7 +75,7 @@ function ProductDetails({product}: Props) {
            </div>
            <div className={product.inStock ? " text-teal-400 font-bold" : " text-red-400" }>{product.inStock ? "In Stock" : " Out of Stock" }</div>
            <Horizontal/>
-           <div>Color</div>
+           <SetColor cartProduct={cartProduct} images={product.images} handleColorSet={handleColorSet} />
            <Horizontal/>
            <div>Quantity</div>
            <Horizontal/>
