@@ -1,6 +1,7 @@
 "use client"
 
 import Button from "@/app/components/Button"
+import ProductImages from "@/app/components/prosucts/ProductImages"
 import SetColor from "@/app/components/prosucts/SetColor"
 import SetQty from "@/app/components/prosucts/SetQty"
 import { Rating } from "@mui/material"
@@ -65,7 +66,7 @@ function ProductDetails({product}: Props) {
   return (
     <div className=" grid grid-cols-1 md:grid-cols-2 gap-12">
         <div>
-          
+            <ProductImages cartProduct={cartProduct} product={product} handleColorSet={handleColorSet} />
         </div>
         <div className=" flex flex-col gap-1 text-slate-500 text-sm">
            <h2 className=" text-3xl font-medium text-slate-700">{product.name}</h2>
