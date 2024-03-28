@@ -1,8 +1,9 @@
 "use client"
 
+import Button from "@/app/components/Button"
 import SetColor from "@/app/components/prosucts/SetColor"
+import SetQty from "@/app/components/prosucts/SetQty"
 import { Rating } from "@mui/material"
-import { hrtime } from "process"
 import { useCallback, useState } from "react"
 
 type Props = {
@@ -51,6 +52,14 @@ function ProductDetails({product}: Props) {
         setCartProduct(prev =>({...prev,selectedImg:value}))
     },[cartProduct.selectedImg])
     
+    const handleQtyIncrease = () =>{
+        setCartProduct(prev =>({...prev, quantity:prev.quantity + 1}))
+    }
+
+    const handleQtyDecrease = () =>{
+        if(cartProduct.quantity === 1) return;
+        setCartProduct(prev =>({...prev, quantity:prev.quantity - 1}))
+    }
 
 
   return (
@@ -77,9 +86,16 @@ function ProductDetails({product}: Props) {
            <Horizontal/>
            <SetColor cartProduct={cartProduct} images={product.images} handleColorSet={handleColorSet} />
            <Horizontal/>
-           <div>Quantity</div>
+           <SetQty cartCounter = {true} cartProduct= {cartProduct} 
+           handleQtyIncrease = {handleQtyIncrease}
+           handleQtyDecrease = {handleQtyDecrease}
+           />
+           
            <Horizontal/>
-           <div>Add to Cart</div>
+           <div className=" max-w-72">
+           <Button label="Add to Cart" small={false} onClick={()=>{}} />
+           </div>
+           
         </div>
 
       
