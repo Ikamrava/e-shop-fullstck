@@ -44,7 +44,7 @@ function ProductDetails({product}: Props) {
         description:product.description,
         brand:product.brand,
         category:product.category,
-        selectedImg:{...product.images},
+        selectedImg:{...product.images[0]},
         price:product.price,
         quantity:1,
      })
@@ -64,7 +64,7 @@ function ProductDetails({product}: Props) {
 
 
   return (
-    <div className=" grid grid-cols-1 md:grid-cols-2 gap-12">
+    <div className=" grid grid-cols-1 md:grid-cols-2 gap-12 mt-8">
         <div>
             <ProductImages cartProduct={cartProduct} product={product} handleColorSet={handleColorSet} />
         </div>
