@@ -4,6 +4,7 @@ import Button from "@/app/components/Button"
 import ProductImages from "@/app/components/prosucts/ProductImages"
 import SetColor from "@/app/components/prosucts/SetColor"
 import SetQty from "@/app/components/prosucts/SetQty"
+import { useCart } from "@/app/hooks/useCart"
 import { Rating } from "@mui/material"
 import { useCallback, useState } from "react"
 
@@ -35,6 +36,8 @@ const Horizontal =() =>{
 }
 
 function ProductDetails({product}: Props) {
+    
+    const {cartTotalQty, handleAddProductToCart , cartProducts} = useCart()
     const prodcutRating = product.reviews.reduce((acc:number,item:any) =>
      item.rating + acc ,0) / product.reviews.length
 
@@ -48,6 +51,7 @@ function ProductDetails({product}: Props) {
         price:product.price,
         quantity:1,
      })
+     console.log(cartProducts)
 
     const handleColorSet = useCallback((value:SelectedImgType)=>{
         setCartProduct(prev =>({...prev,selectedImg:value}))
@@ -94,7 +98,7 @@ function ProductDetails({product}: Props) {
            
            <Horizontal/>
            <div className=" max-w-72">
-           <Button label="Add to Cart" small={false} onClick={()=>{}} />
+           <Button label="Add to Cart" small={false} onClick={()=>handleAddProductToCart(cartProduct)} />
            </div>
            
         </div>
