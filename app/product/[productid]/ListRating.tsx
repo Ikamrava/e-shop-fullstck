@@ -1,5 +1,6 @@
 "use client"
 
+import Avatar from "@/app/components/Avatar"
 import Heading from "@/app/components/Heading"
 import { Rating, dividerClasses } from "@mui/material"
 import moment from "moment"
@@ -18,7 +19,7 @@ function ListRating({product}: Props) {
               return (
                 <div key={review.id} className=" max-w-300px">
                   <div className="flex gap-2 item-center">
-                    <div className="  ">Avatar</div>
+                    <div className="  "><Avatar src={review.user.image}/></div>
                     <div className=" font-semibold">{review?.user.name}</div>
                     <div>{moment(review.createdDate).fromNow()}</div>
                   </div>
