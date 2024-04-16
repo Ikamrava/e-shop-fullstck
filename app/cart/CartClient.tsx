@@ -5,6 +5,7 @@ import { useCart } from "../hooks/useCart"
 import { MdArrowBack } from "react-icons/md"
 import Heading from "../components/Heading"
 import Button from "../components/Button"
+import ItemContent from "./ItemContent"
 
 type Props = {}
 
@@ -33,9 +34,7 @@ function CartClient({}: Props) {
 
         <div>
             {cartProducts && cartProducts.map(product => (
-                <div key={product.id}>
-                    <div>{product.name}</div>
-                </div>
+                  <ItemContent key={product.id} item = {product}/>
             ))}
         </div>
         <div className=" flex border-t-[1.5px] bordr-slate-200 justify-between gap-4 pt-4 mt-4">
