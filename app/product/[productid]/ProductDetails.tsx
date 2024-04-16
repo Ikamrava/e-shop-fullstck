@@ -60,7 +60,7 @@ function ProductDetails({product}: Props) {
      console.log(cartProducts)
 
      useEffect(() =>{
-        setIsProductInCart(false)
+        
         if(cartProducts) {
             const existingIndex = cartProducts.findIndex((item)=> item.id = product.id)
             if(existingIndex > -1) {
@@ -107,13 +107,19 @@ function ProductDetails({product}: Props) {
            <Horizontal/>
            {isProductInCart ?
             <>
-              <p className=" mb-2 text-slate-500 flex items-center gap-1">
-                <MdCheckCircle className="text-teal-40" size={20}/>
-                <span>Product added to the cart</span>
-              </p> 
+              <SetColor cartProduct={cartProduct} images={product.images} handleColorSet={handleColorSet} />
+                <Horizontal/>
+                <SetQty cartCounter = {true} cartProduct= {cartProduct} 
+                        handleQtyIncrease = {handleQtyIncrease}
+                        handleQtyDecrease = {handleQtyDecrease}/>
+                <Horizontal/>
+              <div className=" max-w-72">
+                <Button label="Add to Cart" small={false} onClick={()=>handleAddProductToCart(cartProduct)} />
+                </div>
               <div className=" max-w-72 font-bold">
                 <Button label="View Cart" outline onClick={()=>router.push("/cart")}/>
               </div>
+              
             </>
            :
            <>  

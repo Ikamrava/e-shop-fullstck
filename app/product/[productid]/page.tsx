@@ -1,15 +1,15 @@
 import React from 'react'
-import { product } from '@/utils/tproduct'
 import Container from '@/app/components/Container';
 import ProductDetails from './ProductDetails';
 import ListRating from './ListRating';
+import {products} from "@/utils/products"
 
 type Props = {
   productid : string;
 }
 
 function Product({params}: {params:Props}) {
-  
+  const product = products.find(p => p.id === params.productid);
   return (
     <div>
       <Container>

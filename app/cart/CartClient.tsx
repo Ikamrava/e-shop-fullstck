@@ -10,7 +10,7 @@ import ItemContent from "./ItemContent"
 type Props = {}
 
 function CartClient({}: Props) {
-  const {cartProducts} = useCart()
+  const {cartProducts,handleCleareCart} = useCart()
   if(!cartProducts || cartProducts.length === 0) return (
     <div className=" flex flex-col items-center" >
         <div className=" text-2xl">No products in cart</div>
@@ -25,7 +25,8 @@ function CartClient({}: Props) {
   return (
     <div>
         <Heading title="Shopping Cart" center/>
-        <div className=" grid grid-cols-5 text-xs gap-4 pb-2 items-center mt-8">
+
+        <div className=" hidden md:grid md:grid-cols-5 text-xs gap-4 pb-2 items-center mt-8">
             <div className=" col-span-2 justify-self-start">Product</div>
             <div className=" justify-self-center">Price</div>
             <div className=" justify-self-center">Quantity</div>
@@ -37,9 +38,10 @@ function CartClient({}: Props) {
                   <ItemContent key={product.id} item = {product}/>
             ))}
         </div>
+
         <div className=" flex border-t-[1.5px] bordr-slate-200 justify-between gap-4 pt-4 mt-4">
             <div className=" w-24">
-                <Button label="Clear Cart" onClick={()=>{}} small outline/>
+                <Button label="Clear Cart" onClick={()=>{handleCleareCart()}} small outline/>
             </div>
             <div className=" text-sm flex flex-col gap-1 items-start" >
                 <div className=" flex justify-between w-full text-base font-semibold">
